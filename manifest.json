@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "AddRaisins",
+    "version": "1.0",
+    "description": "A prank extension that adds raisins to recipe websites.",
+    "content_scripts": [
+      {
+        "matches": ["*://www.allrecipes.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "permissions": ["cookies", "storage"],
+    "host_permissions": ["*://www.allrecipes.com/*"]
+  }
