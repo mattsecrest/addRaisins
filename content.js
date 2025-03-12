@@ -1,31 +1,35 @@
 // content.js
 
-function addRaisinsToIngredients() {
-    const ingredientsList = document.querySelector(".mm-recipes-structured-ingredients__list");
+function addRaisinsToDirections() {
+    const directionsList = document.querySelector(".comp.mm-recipes-steps__content.mntl-sc-page.mntl-block ol");
   
-    if (ingredientsList) {
-      const newIngredient = document.createElement("li");
-      newIngredient.classList.add("mm-recipes-structured-ingredients__list-item");
+    if (directionsList) {
+      const newDirection = document.createElement("li");
+      newDirection.classList.add("comp", "mntl-sc-block", "mntl-sc-block-startgroup", "mntl-sc-block-group--LI"); // Add the classes
   
-      const quantities = ["1 cup", "a handful of", "a few", "2 tablespoons", "a sprinkle of", "a dash of"];
-      const randomQuantity = quantities[Math.floor(Math.random() * quantities.length)];
+      const directionItems = directionsList.querySelectorAll("li");
+      // Ensure the index is at least 2 (skipping the first two)
+      const randomIndex = 2 + Math.floor(Math.random() * (directionItems.length - 2));
   
-      newIngredient.innerHTML = `
-        <p>
-          <span data-ingredient-quantity="true">${randomQuantity}</span>
-          <span data-ingredient-name="true">raisins</span>
-        </p>
+      // Vary the instruction text
+      const instructions = [
+        "Add raisins.",
+        "Mix in a handful of raisins.",
+        "Sprinkle a few raisins on top.",
+        "Fold in 2 tablespoons of raisins."
+      ];
+      const randomInstruction = instructions[Math.floor(Math.random() * instructions.length)];
+  
+      newDirection.innerHTML = `
+        <p class="comp mntl-sc-block mntl-sc-block-html">${randomInstruction}</p>
       `;
   
-      const ingredientItems = ingredientsList.querySelectorAll(".mm-recipes-structured-ingredients__list-item");
-      const randomIndex = Math.floor(Math.random() * ingredientItems.length);
-  
       if (randomIndex === 0) {
-        ingredientsList.prepend(newIngredient);
+        directionsList.prepend(newDirection);
       } else {
-        ingredientsList.insertBefore(newIngredient, ingredientItems[randomIndex]);
+        directionsList.insertBefore(newDirection, directionItems[randomIndex]);
       }
     }
   }
   
-  addRaisinsToIngredients();
+  addRaisinsToDirections();
